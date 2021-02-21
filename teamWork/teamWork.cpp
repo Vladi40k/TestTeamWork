@@ -1,23 +1,24 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
 #include <fstream>
 
 using namespace std;
 
-vector<string> configurate(const char* path)
+queue<string> configurate(const char* path)
 {
-	vector<string> res;
+	queue<string> res;
 	string tmp;
 	ifstream config(path);
 	if (!config.is_open())
-		std::cout << "Confige file not open\n";
+		throw new exception("config file not open");
 	else
 	{
 		while (!config.eof())
 		{
 			getline(config, tmp);
-			res.push_back(tmp);
+			res.push(tmp);
 		}
 	}
 	config.close();
@@ -26,10 +27,12 @@ vector<string> configurate(const char* path)
 
 int main()
 {
-	vector<string> conf = configurate("..\\teamWork\\config.txt");
-	cout << conf[0] << '\n';
+	queue<string> conf = configurate("..\\teamWork\\config.txt");
+	cout << conf.front() << '\n'; conf.pop();
+	size_t arrStartLen = stoi(conf.front()); conf.pop();
 
-	size_t arrStartLen = stoi(conf[1]);
+	int maxRandSize = stoi(conf.front()); conf.pop();
+	int minRandSize = stoi(conf.front()); conf.pop();
 
     int arr[10] = { 2,34,3,2,4,42,2,3,4,37 };
 
@@ -38,5 +41,5 @@ int main()
 		cout << arr[i] << endl;
 	}
 
-	std::cout << conf[2] << '\n';
+	std::cout << conf.front() << '\n'; conf.pop();
 }
