@@ -1,0 +1,5 @@
+Hello world
+10
+0
+1000
+End
