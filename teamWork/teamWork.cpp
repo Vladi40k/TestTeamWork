@@ -8,7 +8,7 @@ int main()
 {
 	ifstream config("..\\teamWork\\config.txt");
 	if (!config.is_open())
-		throw new exception("config file not open");
+		std::cout << "Confige file not open\n";
 	
 	string initial_str;
 	getline(config, initial_str);
