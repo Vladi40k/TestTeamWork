@@ -1,27 +1,35 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fstream>
 
 using namespace std;
 
-int main()
+vector<string> configurate(const char* path)
 {
-	ifstream config("..\\teamWork\\config.txt");
+	vector<string> res;
+	string tmp;
+	ifstream config(path);
 	if (!config.is_open())
 		std::cout << "Confige file not open\n";
-	
-	string initial_str;
-	getline(config, initial_str);
-	string confSize;
-	getline(config, confSize);
-	string end_str;
-	getline(config, end_str);
-
+	else
+	{
+		while (!config.eof())
+		{
+			getline(config, tmp);
+			res.push_back(tmp);
+		}
+	}
 	config.close();
-	
-	cout << initial_str << '\n';
+	return res;
+}
 
-	size_t arrStartLen = stoi(confSize);
+int main()
+{
+	vector<string> conf = configurate("..\\teamWork\\config.txt");
+	cout << conf[0] << '\n';
+
+	size_t arrStartLen = stoi(conf[1]);
 
     int arr[10] = { 2,34,3,2,4,42,2,3,4,37 };
 
@@ -30,5 +38,5 @@ int main()
 		cout << arr[i] << endl;
 	}
 
-	std::cout << end_str << '\n';
+	std::cout << conf[2] << '\n';
 }
