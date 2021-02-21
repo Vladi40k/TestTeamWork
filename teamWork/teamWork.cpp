@@ -2,6 +2,10 @@
 
 using namespace std;
 
+int random(int minRandVal, int maxRandVal) {
+	return minRandVal + rand() % maxRandVal;;
+}
+
 int main()
 {
 	int minRandVal = 123;
@@ -12,7 +16,7 @@ int main()
 	for (size_t i = 0; i < 10; i++)
 	{
 
-		arr[i] = minRandVal + rand() % maxRandVal;
+		arr[i] = random(minRandVal, maxRandVal);
 
 		cout << arr[i] << endl;
 	}
